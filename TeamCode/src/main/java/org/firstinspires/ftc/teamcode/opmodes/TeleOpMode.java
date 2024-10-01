@@ -2,57 +2,47 @@ package org.firstinspires.ftc.teamcode.opmodes;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
+import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
 import org.firstinspires.ftc.teamcode.Arm;
 import org.firstinspires.ftc.teamcode.Chassis;
 import org.firstinspires.ftc.teamcode.Intake;
 import org.firstinspires.ftc.teamcode.pedroPathing.examples.TeleOpEnhancements;
+import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
+import org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants;
 
 @TeleOp(name = "TeleOp")
 public class TeleOpMode extends OpMode {
-    Chassis driveTrain;
+    private Follower follower;
     Arm arm;
     Intake intake;
-    TeleOpEnhancements TPE;
-    Vector driveVector;
-    Vector headingVector;
-
-    double y;
-    double x;
-    double rx;
 
     @Override
     public void init() {
-        driveTrain = new Chassis(hardwareMap); // Initialize chassis
+        follower = new Follower(hardwareMap); // Initialize follower
         arm = new Arm(hardwareMap);  // Initialize arm system
         intake = new Intake(hardwareMap);  // Initialize intake system
 
-        TPE = new TeleOpEnhancements();
-        TPE.init(); // Initialize TPE and its components
+        DcMotorEx leftFront = hardwareMap.get(DcMotorEx.class, FollowerConstants.leftFrontMotorName);
+        DcMotorEx leftRear = hardwareMap.get(DcMotorEx.class, FollowerConstants.leftRearMotorName);
+        DcMotorEx rightRear = hardwareMap.get(DcMotorEx.class, FollowerConstants.rightRearMotorName);
+        DcMotorEx rightFront = hardwareMap.get(DcMotorEx.class, FollowerConstants.rightFrontMotorName);
 
-        driveVector = new Vector();
-        headingVector = new Vector();
+        leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
+        rightFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
 
+        follower.startTeleopDrive();
     }
 
     @Override
     public void loop() {
-        driveVector.setOrthogonalComponents(-applyResponseCurve(gamepad1.left_stick_y), -applyResponseCurve(gamepad1.left_stick_x));
-        driveVector.setMagnitude(MathFunctions.clamp(driveVector.getMagnitude(), 0, 1));
-        driveVector.rotateVector(TPE.follower.getPose().getHeading());
-
-        headingVector.setComponents(-gamepad1.left_stick_x, TPE.follower.getPose().getHeading());
-
-        //TPE.follower.setMovementVectors(TPE.follower.getCentripetalForceCorrection(), headingVector, driveVector);
-        TPE.follower.update();
-
-        // Drivetrain control
-        y = applyResponseCurve(gamepad1.left_stick_y);
-        x = -applyResponseCurve(gamepad1.left_stick_x);
-        rx = -applyResponseCurve(gamepad1.right_stick_x);
-        driveTrain.drive(x, y, rx);
+        follower.setTeleOpMovementVectors(applyResponseCurve(gamepad1.left_stick_y), -applyResponseCurve(gamepad1.left_stick_x), -applyResponseCurve(gamepad1.right_stick_x));
+        follower.update();
 
         // Arm control using gamepad2
         if (gamepad2.dpad_up) {

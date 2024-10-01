@@ -1,6 +1,9 @@
 package org.firstinspires.ftc.teamcode.pedroPathing.util;
 
+import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.PoseUpdater;
+
+import java.util.ArrayList;
 
 /**
  * This is the DashboardPoseTracker class. This tracks the pose history of the robot through a
@@ -15,7 +18,7 @@ public class DashboardPoseTracker {
     private double[] yPositions;
     private PoseUpdater poseUpdater;
     private long lastUpdateTime;
-    private final int TRACKING_LENGTH = 2000;
+    private final int TRACKING_LENGTH = 1500;
     private final long UPDATE_TIME = 50;
     private final int TRACKING_SIZE = TRACKING_LENGTH / (int) UPDATE_TIME;
 

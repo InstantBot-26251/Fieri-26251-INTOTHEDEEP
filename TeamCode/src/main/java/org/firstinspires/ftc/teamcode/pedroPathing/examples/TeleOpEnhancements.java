@@ -1,9 +1,9 @@
 package org.firstinspires.ftc.teamcode.pedroPathing.examples;
 
-//import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftFrontMotorName;
-//import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftRearMotorName;
-//import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightFrontMotorName;
-//import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightRearMotorName;
+import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftFrontMotorName;
+import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.leftRearMotorName;
+import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightFrontMotorName;
+import static org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants.rightRearMotorName;
 
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
@@ -23,7 +23,7 @@ import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
  */
 @TeleOp(name = "Pedro Pathing TeleOp Enhancements", group = "Test")
 public class TeleOpEnhancements extends OpMode {
-    public Follower follower;
+    private Follower follower;
 
     private DcMotorEx leftFront;
     private DcMotorEx leftRear;
@@ -37,10 +37,10 @@ public class TeleOpEnhancements extends OpMode {
     public void init() {
         follower = new Follower(hardwareMap);
 
-        // leftFront = hardwareMap.get(DcMotorEx.class, "leftFront");
-        // leftRear = hardwareMap.get(DcMotorEx.class, "leftRight");
-        // rightRear = hardwareMap.get(DcMotorEx.class, rightRearMotorName);
-        // rightFront = hardwareMap.get(DcMotorEx.class, rightFrontMotorName);
+        leftFront = hardwareMap.get(DcMotorEx.class, leftFrontMotorName);
+        leftRear = hardwareMap.get(DcMotorEx.class, leftRearMotorName);
+        rightRear = hardwareMap.get(DcMotorEx.class, rightRearMotorName);
+        rightFront = hardwareMap.get(DcMotorEx.class, rightFrontMotorName);
 
         leftFront.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
         leftRear.setZeroPowerBehavior(DcMotor.ZeroPowerBehavior.BRAKE);
