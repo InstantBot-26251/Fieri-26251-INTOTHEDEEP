@@ -3,14 +3,14 @@ package org.firstinspires.ftc.teamcode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
-import org.firstinspires.ftc.teamcode.pedroPathing.util.PIDFC;
+import org.firstinspires.ftc.teamcode.pedroPathing.util.PIDFController;
 
 
 public class Arm {
 
     public DcMotor rotationMotor;
     public DcMotor armMotor;
-    public PIDFC pidf;
+    public PIDFController pidf;
 
 
     // PIDF coefficients (tune these values)
@@ -31,7 +31,7 @@ public class Arm {
         rotationMotor.setMode(DcMotor.RunMode.RUN_WITHOUT_ENCODER);
 
         // Initialize PIDF controller with tuned values
-        pidf = new PIDFC(kp, ki, kd, kf);
+        pidf = new PIDFController(kp, ki, kd, kf);
 
         // Set an initial target position for the arm
         pidf.setSetPoint(0);  // Start at encoder position 0

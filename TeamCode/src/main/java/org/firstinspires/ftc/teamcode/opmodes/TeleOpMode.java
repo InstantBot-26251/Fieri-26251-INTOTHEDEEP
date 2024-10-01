@@ -10,6 +10,7 @@ import org.firstinspires.ftc.teamcode.Chassis;
 import org.firstinspires.ftc.teamcode.Intake;
 import org.firstinspires.ftc.teamcode.pedroPathing.examples.TeleOpEnhancements;
 import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
+import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.MathFunctions;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Vector;
 import org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants;
@@ -23,6 +24,7 @@ public class TeleOpMode extends OpMode {
     @Override
     public void init() {
         follower = new Follower(hardwareMap); // Initialize follower
+        follower.setPose(new Pose());
         arm = new Arm(hardwareMap);  // Initialize arm system
         intake = new Intake(hardwareMap);  // Initialize intake system
 
@@ -41,7 +43,7 @@ public class TeleOpMode extends OpMode {
 
     @Override
     public void loop() {
-        follower.setTeleOpMovementVectors(applyResponseCurve(gamepad1.left_stick_y), -applyResponseCurve(gamepad1.left_stick_x), -applyResponseCurve(gamepad1.right_stick_x));
+        follower.setTeleOpMovementVectors(applyResponseCurve(gamepad1.left_stick_y), -applyResponseCurve(gamepad1.left_stick_x), -applyResponseCurve(gamepad1.right_stick_x), true  );
         follower.update();
 
         // Arm control using gamepad2

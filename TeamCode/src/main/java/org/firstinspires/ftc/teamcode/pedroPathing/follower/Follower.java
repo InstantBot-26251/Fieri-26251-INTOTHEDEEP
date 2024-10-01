@@ -498,7 +498,19 @@ public class Follower {
 
             calculateAveragedVelocityAndAcceleration();
 
-            drivePowers = driveVectorScaler.getDrivePowers(getCentripetalForceCorrection(), teleopHeadingVector, teleopDriveVector, poseUpdater.getPose().getHeading());
+            // drivePowers = driveVectorScaler.getDrivePowers(getCentripetalForceCorrection(), teleopHeadingVector, teleopDriveVector, poseUpdater.getPose().getHeading());
+            double[] wheelPowers = new double[4];
+            double fwd = teleopDriveVector.getXComponent();
+            double lat = teleopDriveVector.getYComponent();
+            double rot = teleopDriveValues[2];
+
+            double denominators = Math.max(Math.abs(fwd) + Math.abs(lat)+ Math.abs(rot), 1);
+            wheelPowers[0] = (fwd + lat + rot) / denominators;
+            wheelPowers[1] = (fwd - lat + rot) / denominators;
+            wheelPowers[2] = (fwd - lat - rot) / denominators;
+            wheelPowers[4] = (fwd + lat - rot) / denominators;
+
+            drivePowers = wheelPowers;
 
             limitDrivePowers();
 
