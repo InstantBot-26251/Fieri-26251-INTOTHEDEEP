@@ -5,7 +5,6 @@ import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
-import org.firstinspires.ftc.teamcode.chassis.Chassis2;
 import org.firstinspires.ftc.teamcode.pedroPathing.tuning.FollowerConstants;
 
 @Autonomous(name = "Obv Auto")
@@ -35,7 +34,7 @@ public class ObservationAuto extends OpMode {
     @Override
     public void loop() {
         strafeRight();
-        telemetry.addData("OpMode", "stop the opmode when observation zone reached");
+        telemetry.addData("OpMode", "stop the OpMode when observation zone reached");
 
     }
     public void moveForward() {
@@ -45,10 +44,10 @@ public class ObservationAuto extends OpMode {
         bl.setPower(1);
     }
     public void strafeRight() {
-        fl.setPower(-1);
-        br.setPower(-1);
-        fr.setPower(1);
-        bl.setPower(1);
+        fl.setPower(-.5);
+        br.setPower(-.5);
+        fr.setPower(.5);
+        bl.setPower(.5);
     }
     public void strafeLeft() {
         fl.setPower(1);

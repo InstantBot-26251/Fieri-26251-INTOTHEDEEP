@@ -37,8 +37,12 @@ public class AutoConstants {
     public static final Pose RIGHT_NEUTRAL_SAMPLE = new Pose(46, 121.25);
 
     public static Pose checkAlliance(Pose pose) {
-        if (RobotGlobal.alliance == RobotGlobal.Alliance.RED) return toRed(pose);
-        else return pose;
+        // Access the alliance field from RobotGlobal
+        if (RobotGlobal.alliance == RobotGlobal.Alliance.RED) {
+            return toRed(pose); // Adjust pose if the alliance is RED
+        } else {
+            return pose; // Return the original pose for other alliances
+        }
     }
 
     public static Pose toRed(Pose pose) {

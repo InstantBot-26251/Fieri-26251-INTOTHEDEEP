@@ -1,7 +1,6 @@
 package org.firstinspires.ftc.teamcode.opmodes.miscellaneous;
 
 
-import org.firstinspires.ftc.teamcode.opmodes.util.AutoStateM;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 

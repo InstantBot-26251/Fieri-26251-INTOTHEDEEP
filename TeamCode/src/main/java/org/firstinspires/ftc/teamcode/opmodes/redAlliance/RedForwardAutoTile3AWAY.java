@@ -9,15 +9,8 @@ import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierCurve;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierLine;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
-import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathBuilder;
-import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathChain;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
-import org.firstinspires.ftc.teamcode.util.Arm;
-import org.firstinspires.ftc.teamcode.util.Arm2;
-import org.firstinspires.ftc.teamcode.util.ArmAndIntakeFunctions;
-import org.firstinspires.ftc.teamcode.util.Intake;
 import org.firstinspires.ftc.teamcode.opmodes.util.AutoState;
-import org.firstinspires.ftc.teamcode.util.ScoreHighBasket;
 
 
 @Autonomous(name = "Red Forward Autonomous Tile 3 Away")

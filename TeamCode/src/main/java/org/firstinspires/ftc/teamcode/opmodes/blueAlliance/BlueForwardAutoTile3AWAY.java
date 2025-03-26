@@ -1,22 +1,13 @@
 package org.firstinspires.ftc.teamcode.opmodes.blueAlliance;
 
-import static org.firstinspires.ftc.teamcode.auto.AutoConstants.checkAlliance;
-
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 
-import org.firstinspires.ftc.teamcode.opmodes.ObservationAuto;
 import org.firstinspires.ftc.teamcode.opmodes.util.AutoState;
 import org.firstinspires.ftc.teamcode.auto.*;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierLine;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Path;
-import org.firstinspires.ftc.teamcode.util.Arm2;
-import org.firstinspires.ftc.teamcode.util.ArmAndIntakeFunctions;
-import org.firstinspires.ftc.teamcode.util.Arm;
-import org.firstinspires.ftc.teamcode.util.Intake;
 import org.firstinspires.ftc.teamcode.pedroPathing.follower.Follower;
-import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathBuilder;
-import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.PathChain;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.BezierCurve;
 import org.firstinspires.ftc.teamcode.pedroPathing.pathGeneration.Point;
 import org.firstinspires.ftc.teamcode.pedroPathing.localization.Pose;
