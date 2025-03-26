@@ -78,7 +78,7 @@ public class TeleOpMode extends OpMode {
             chassis.resetYaw();
         }
 
-        // Arm control with limit checks
+        // Arm control with limit checks yessir
         if (arm.getSlidePosition() <= -2191 && y2 < 0 || arm.getSlidePosition() >= 0 && y2 > 0) {
             arm.setSlidePower(0); // Stop downward/upward movement
         }
