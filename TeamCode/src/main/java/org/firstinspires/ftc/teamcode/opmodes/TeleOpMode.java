@@ -62,7 +62,7 @@ public class TeleOpMode extends OpMode {
 
     @Override
     public void loop() {
-        follower.setTeleOpMovementVectors(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
+        // follower.setTeleOpMovementVectors(-gamepad1.left_stick_y, -gamepad1.left_stick_x, -gamepad1.right_stick_x);
         arm.setPivotPowerAuto();
         arm.setSlidePowerAuto();
         // Read inputs for controlling chassis
@@ -72,67 +72,12 @@ public class TeleOpMode extends OpMode {
         double y2 = IshaanResponseCurve(gamepad2.left_stick_y);
         double y3 = IshaanResponseCurve(gamepad2.right_stick_y);
 
-//        // Drive control
-//        chassis.drive(x, y, rx);
-//        if (gamepad1.options) {
-//            chassis.resetYaw();
-//        }
+//        Drive control
+        chassis.drive(x, y, rx);
+     if (gamepad1.options) {
+            chassis.resetYaw();
+        }
 
-        // AUTOMATIC ARM CONTROLS:
-        if (gamepad2.dpad_up) {
-            if (arm.getSlidePosition() > 0) {
-                arm.setSlidePosition(0);          //  SCORING POSITION FOR HIGH BASKET
-                if (!arm.isSlideBusy()) {
-                    arm.setPivotPosition(-1053);
-                    if (!arm.isPivotBusy()) {
-                        arm.setSlidePosition(-2191);
-                    }
-                    telemetry.addData("PRESS RIGHT TRIGGER TO SCORE", "HIGH BASKET");
-                }
-            }
-            else {
-            arm.setPivotPosition(-1053);
-            if (!arm.isPivotBusy()) {
-                arm.setSlidePosition(-2191);
-            }
-            telemetry.addData("PRESS RIGHT TRIGGER TO SCORE", "HIGH BASKET");
-        }
-        }
-        if (gamepad2.dpad_left) {
-            // SPECIMEN SCORING POSITION
-            arm.setSlidePosition(0);
-            arm.setPivotPosition(0);
-        }
-        if (gamepad2.dpad_down) {
-            //COLLECTING
-            if (arm.getSlidePosition() > 0) {
-                arm.setSlidePosition(0);
-                if(!arm.isSlideBusy()) {
-                if (arm.getPivotPosition() < 259) {
-                    arm.setPivotPosition(259);
-                    if (!arm.isPivotBusy()) {
-                        arm.setPivotPosition(259); //TODO: CHANGE WITH ACTUAL ENCODER VALUE
-                        if (!arm.isPivotBusy()) {
-                            arm.setSlidePosition(0); //TODO: CHANGE WITH ACTUAL ENCODER VALUE
-                            telemetry.addData("PRESS LEFT TRIGGER", "COLLECTION");
-                        }
-                    }
-                }
-                }
-
-            } else {
-                if (arm.getPivotPosition() < 259) {
-                    arm.setSlidePosition(0);
-                    if (!arm.isSlideBusy()) {
-                        arm.setPivotPosition(259); //TODO: CHANGE WITH ACTUAL ENCODER VALUE
-                        if (!arm.isPivotBusy()) {
-                            arm.setSlidePosition(0); //TODO: CHANGE WITH ACTUAL ENCODER VALUE
-                        }
-                    }
-                }
-            }
-
-        }
         // Arm control with limit checks
         if (arm.getSlidePosition() <= -2191 && y2 < 0 || arm.getSlidePosition() >= 0 && y2 > 0) {
             arm.setSlidePower(0); // Stop downward/upward movement
