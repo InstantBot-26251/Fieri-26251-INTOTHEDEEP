@@ -42,7 +42,7 @@ public class TeleOpMode extends OpMode {
         claw = new Intake(hardwareMap, clawState);  // Initialize intake system
 
 //        // Initialize chassis
-//        chassis = new Chassis2(hardwareMap);
+        chassis = new Chassis2(hardwareMap);
 
         leftFront = hardwareMap.get(DcMotorEx.class, leftFrontMotorName);
         leftRear = hardwareMap.get(DcMotorEx.class, leftRearMotorName);
