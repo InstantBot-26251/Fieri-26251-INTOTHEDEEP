@@ -41,8 +41,8 @@ public class TeleOpMode extends OpMode {
         arm = new Arm2(hardwareMap);  // Initialize arm system
         claw = new Intake(hardwareMap, clawState);  // Initialize intake system
 
-//        // Initialize chassis
-//        chassis = new Chassis2(hardwareMap);
+//        // Initialize chassis yessir
+        chassis = new Chassis2(hardwareMap);
 
         leftFront = hardwareMap.get(DcMotorEx.class, leftFrontMotorName);
         leftRear = hardwareMap.get(DcMotorEx.class, leftRearMotorName);
@@ -78,7 +78,7 @@ public class TeleOpMode extends OpMode {
             chassis.resetYaw();
         }
 
-        // Arm control with limit checks
+        // Arm control with limit checks yessir
         if (arm.getSlidePosition() <= -2191 && y2 < 0 || arm.getSlidePosition() >= 0 && y2 > 0) {
             arm.setSlidePower(0); // Stop downward/upward movement
         }
